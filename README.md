@@ -4,7 +4,6 @@
 
 | Deliverable | Link | Status |
 |---|---|---|
-| 🎥 20-minute demo video | **PENDING** — unlisted YouTube URL to be added after recording ([how](demo/DEMO_SCRIPT.md#upload-checklist)) | ⏳ team action |
 | 📊 Presentation (PDF) | [submission/Innovators_IIT_Kharagpur.pdf](submission/Innovators_IIT_Kharagpur.pdf) | ✅ |
 | 📊 Presentation (PPT, editable, speaker notes) | [submission/Innovators_IIT_Kharagpur.pptx](submission/Innovators_IIT_Kharagpur.pptx) | ✅ |
 | 🧭 Architecture diagram (PDF) | [submission/architecture_diagram.pdf](submission/architecture_diagram.pdf) | ✅ |
