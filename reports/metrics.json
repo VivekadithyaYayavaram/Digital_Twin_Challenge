@@ -1,0 +1,1044 @@
+{
+  "disclaimer": "All numbers measure agreement with a SYNTHETIC data generator. They are not evidence of clinical accuracy or benefit in real patients.",
+  "model_version": "0.1.0+b86039044c2f",
+  "target": {
+    "name": "hyperglycemia_event_within_120m",
+    "threshold_mg_dl": 180,
+    "horizon_min": 120,
+    "min_future_coverage": 0.5
+  },
+  "selected_model": "hist_gradient_boosting",
+  "operating_point": {
+    "rule": "highest threshold reaching sensitivity >= 0.8 on validation patients",
+    "threshold": 0.8575
+  },
+  "splits": {
+    "method": "by patient (no patient in more than one split), stratified by diabetes status; seed 2026",
+    "train": {
+      "rows": 30898,
+      "patients": 48,
+      "prevalence": 0.4741
+    },
+    "val": {
+      "rows": 10251,
+      "patients": 16,
+      "prevalence": 0.4824
+    },
+    "test": {
+      "rows": 10275,
+      "patients": 16,
+      "prevalence": 0.4764
+    },
+    "test_onset_subset": {
+      "rows": 7151,
+      "patients": 15,
+      "prevalence": 0.2602,
+      "definition": "test rows where latest CGM < 180 mg/dL"
+    },
+    "test_sensor_gap_subset": {
+      "rows": 366,
+      "patients": 16,
+      "prevalence": 0.3661,
+      "definition": "test rows with last CGM older than max_staleness_min or <50% CGM coverage in the past 120 min"
+    }
+  },
+  "model_labels": {
+    "rule_baseline": "Rule baseline (current or 60-min projected CGM >= threshold)",
+    "logistic_regression": "Logistic regression (baseline ML)",
+    "random_forest": "Random forest",
+    "hist_gradient_boosting": "Histogram gradient boosting"
+  },
+  "validation_selection": {
+    "logistic_regression": {
+      "pr_auc": 0.9426,
+      "roc_auc": 0.9394
+    },
+    "random_forest": {
+      "pr_auc": 0.9729,
+      "roc_auc": 0.9712
+    },
+    "hist_gradient_boosting": {
+      "pr_auc": 0.9766,
+      "roc_auc": 0.9756
+    }
+  },
+  "test": {
+    "rule_baseline": {
+      "n": 10275,
+      "n_positive": 4895,
+      "prevalence": 0.4764,
+      "roc_auc": 0.8858,
+      "pr_auc": 0.8805,
+      "brier": 0.147,
+      "threshold": 0.5,
+      "precision": 0.862,
+      "sensitivity": 0.7085,
+      "specificity": 0.8968,
+      "f1": 0.7778,
+      "accuracy": 0.8071,
+      "confusion": {
+        "tp": 3468,
+        "fp": 555,
+        "tn": 4825,
+        "fn": 1427
+      }
+    },
+    "logistic_regression": {
+      "n": 10275,
+      "n_positive": 4895,
+      "prevalence": 0.4764,
+      "roc_auc": 0.9411,
+      "pr_auc": 0.9429,
+      "brier": 0.0963,
+      "threshold": 0.5736,
+      "precision": 0.889,
+      "sensitivity": 0.808,
+      "specificity": 0.9082,
+      "f1": 0.8465,
+      "accuracy": 0.8604,
+      "confusion": {
+        "tp": 3955,
+        "fp": 494,
+        "tn": 4886,
+        "fn": 940
+      }
+    },
+    "random_forest": {
+      "n": 10275,
+      "n_positive": 4895,
+      "prevalence": 0.4764,
+      "roc_auc": 0.9691,
+      "pr_auc": 0.9696,
+      "brier": 0.0726,
+      "threshold": 0.6527,
+      "precision": 0.9535,
+      "sensitivity": 0.8247,
+      "specificity": 0.9634,
+      "f1": 0.8844,
+      "accuracy": 0.8973,
+      "confusion": {
+        "tp": 4037,
+        "fp": 197,
+        "tn": 5183,
+        "fn": 858
+      }
+    },
+    "hist_gradient_boosting": {
+      "n": 10275,
+      "n_positive": 4895,
+      "prevalence": 0.4764,
+      "roc_auc": 0.9746,
+      "pr_auc": 0.975,
+      "brier": 0.0631,
+      "threshold": 0.8575,
+      "precision": 0.9772,
+      "sensitivity": 0.7722,
+      "specificity": 0.9836,
+      "f1": 0.8627,
+      "accuracy": 0.8829,
+      "confusion": {
+        "tp": 3780,
+        "fp": 88,
+        "tn": 5292,
+        "fn": 1115
+      }
+    }
+  },
+  "test_onset_subset": {
+    "rule_baseline": {
+      "n": 7151,
+      "n_positive": 1861,
+      "prevalence": 0.2602,
+      "roc_auc": 0.7507,
+      "pr_auc": 0.4716,
+      "brier": 0.1926,
+      "threshold": 0.5,
+      "precision": 0.4828,
+      "sensitivity": 0.2332,
+      "specificity": 0.9121,
+      "f1": 0.3145,
+      "accuracy": 0.7354,
+      "confusion": {
+        "tp": 434,
+        "fp": 465,
+        "tn": 4825,
+        "fn": 1427
+      }
+    },
+    "logistic_regression": {
+      "n": 7151,
+      "n_positive": 1861,
+      "prevalence": 0.2602,
+      "roc_auc": 0.8682,
+      "pr_auc": 0.7005,
+      "brier": 0.1249,
+      "threshold": 0.5736,
+      "precision": 0.6973,
+      "sensitivity": 0.5336,
+      "specificity": 0.9185,
+      "f1": 0.6046,
+      "accuracy": 0.8183,
+      "confusion": {
+        "tp": 993,
+        "fp": 431,
+        "tn": 4859,
+        "fn": 868
+      }
+    },
+    "random_forest": {
+      "n": 7151,
+      "n_positive": 1861,
+      "prevalence": 0.2602,
+      "roc_auc": 0.931,
+      "pr_auc": 0.8432,
+      "brier": 0.0947,
+      "threshold": 0.6527,
+      "precision": 0.8878,
+      "sensitivity": 0.5443,
+      "specificity": 0.9758,
+      "f1": 0.6749,
+      "accuracy": 0.8635,
+      "confusion": {
+        "tp": 1013,
+        "fp": 128,
+        "tn": 5162,
+        "fn": 848
+      }
+    },
+    "hist_gradient_boosting": {
+      "n": 7151,
+      "n_positive": 1861,
+      "prevalence": 0.2602,
+      "roc_auc": 0.9426,
+      "pr_auc": 0.867,
+      "brier": 0.0826,
+      "threshold": 0.8575,
+      "precision": 0.9331,
+      "sensitivity": 0.4498,
+      "specificity": 0.9887,
+      "f1": 0.607,
+      "accuracy": 0.8484,
+      "confusion": {
+        "tp": 837,
+        "fp": 60,
+        "tn": 5230,
+        "fn": 1024
+      }
+    }
+  },
+  "bootstrap_ci_test": {
+    "method": "patient-level cluster bootstrap, 300 resamples, 95% percentile intervals",
+    "models": {
+      "rule_baseline": {
+        "roc_auc": [
+          0.8309,
+          0.9211
+        ],
+        "pr_auc": [
+          0.7505,
+          0.9397
+        ],
+        "brier": [
+          0.1158,
+          0.1823
+        ],
+        "sensitivity": [
+          0.62,
+          0.7842
+        ],
+        "specificity": [
+          0.8657,
+          0.9169
+        ]
+      },
+      "logistic_regression": {
+        "roc_auc": [
+          0.9001,
+          0.9672
+        ],
+        "pr_auc": [
+          0.8723,
+          0.972
+        ],
+        "brier": [
+          0.0694,
+          0.1247
+        ],
+        "sensitivity": [
+          0.6821,
+          0.8779
+        ],
+        "specificity": [
+          0.8321,
+          0.9512
+        ]
+      },
+      "random_forest": {
+        "roc_auc": [
+          0.947,
+          0.9834
+        ],
+        "pr_auc": [
+          0.9284,
+          0.9864
+        ],
+        "brier": [
+          0.0529,
+          0.0933
+        ],
+        "sensitivity": [
+          0.7138,
+          0.8799
+        ],
+        "specificity": [
+          0.9315,
+          0.9835
+        ]
+      },
+      "hist_gradient_boosting": {
+        "roc_auc": [
+          0.9599,
+          0.9851
+        ],
+        "pr_auc": [
+          0.939,
+          0.9876
+        ],
+        "brier": [
+          0.0467,
+          0.0792
+        ],
+        "sensitivity": [
+          0.672,
+          0.8348
+        ],
+        "specificity": [
+          0.9713,
+          0.9922
+        ]
+      }
+    },
+    "paired_differences": {
+      "rule_baseline_minus_logistic_regression": {
+        "pr_auc": [
+          -0.132,
+          -0.0307
+        ],
+        "roc_auc": [
+          -0.0732,
+          -0.0421
+        ]
+      },
+      "rule_baseline_minus_random_forest": {
+        "pr_auc": [
+          -0.1957,
+          -0.0465
+        ],
+        "roc_auc": [
+          -0.1222,
+          -0.0612
+        ]
+      },
+      "rule_baseline_minus_hist_gradient_boosting": {
+        "pr_auc": [
+          -0.201,
+          -0.0483
+        ],
+        "roc_auc": [
+          -0.1318,
+          -0.0629
+        ]
+      },
+      "logistic_regression_minus_rule_baseline": {
+        "pr_auc": [
+          0.0307,
+          0.132
+        ],
+        "roc_auc": [
+          0.0421,
+          0.0732
+        ]
+      },
+      "logistic_regression_minus_random_forest": {
+        "pr_auc": [
+          -0.063,
+          -0.0129
+        ],
+        "roc_auc": [
+          -0.0501,
+          -0.0164
+        ]
+      },
+      "logistic_regression_minus_hist_gradient_boosting": {
+        "pr_auc": [
+          -0.0732,
+          -0.0146
+        ],
+        "roc_auc": [
+          -0.0618,
+          -0.0178
+        ]
+      },
+      "random_forest_minus_rule_baseline": {
+        "pr_auc": [
+          0.0465,
+          0.1957
+        ],
+        "roc_auc": [
+          0.0612,
+          0.1222
+        ]
+      },
+      "random_forest_minus_logistic_regression": {
+        "pr_auc": [
+          0.0129,
+          0.063
+        ],
+        "roc_auc": [
+          0.0164,
+          0.0501
+        ]
+      },
+      "random_forest_minus_hist_gradient_boosting": {
+        "pr_auc": [
+          -0.0152,
+          -0.0002
+        ],
+        "roc_auc": [
+          -0.0151,
+          0.0007
+        ]
+      },
+      "hist_gradient_boosting_minus_rule_baseline": {
+        "pr_auc": [
+          0.0483,
+          0.201
+        ],
+        "roc_auc": [
+          0.0629,
+          0.1318
+        ]
+      },
+      "hist_gradient_boosting_minus_logistic_regression": {
+        "pr_auc": [
+          0.0146,
+          0.0732
+        ],
+        "roc_auc": [
+          0.0178,
+          0.0618
+        ]
+      },
+      "hist_gradient_boosting_minus_random_forest": {
+        "pr_auc": [
+          0.0002,
+          0.0152
+        ],
+        "roc_auc": [
+          -0.0007,
+          0.0151
+        ]
+      }
+    }
+  },
+  "temporal_holdout": {
+    "description": "fit on TRAIN patients, study days 0-9; threshold from VAL patients days 0-9; evaluated on TEST patients, days 10+ (new patients AND later time)",
+    "hist_gradient_boosting": {
+      "n": 2932,
+      "n_positive": 1408,
+      "prevalence": 0.4802,
+      "roc_auc": 0.9754,
+      "pr_auc": 0.9757,
+      "brier": 0.0613,
+      "threshold": 0.8618,
+      "precision": 0.9703,
+      "sensitivity": 0.7884,
+      "specificity": 0.9777,
+      "f1": 0.8699,
+      "accuracy": 0.8868,
+      "confusion": {
+        "tp": 1110,
+        "fp": 34,
+        "tn": 1490,
+        "fn": 298
+      }
+    },
+    "rule_baseline": {
+      "n": 2932,
+      "n_positive": 1408,
+      "prevalence": 0.4802,
+      "roc_auc": 0.8827,
+      "pr_auc": 0.875,
+      "brier": 0.1522,
+      "threshold": 0.5,
+      "precision": 0.8561,
+      "sensitivity": 0.6974,
+      "specificity": 0.8917,
+      "f1": 0.7687,
+      "accuracy": 0.7984,
+      "confusion": {
+        "tp": 982,
+        "fp": 165,
+        "tn": 1359,
+        "fn": 426
+      }
+    }
+  },
+  "ablation": {
+    "ehr_only": {
+      "test": {
+        "n": 10275,
+        "n_positive": 4895,
+        "prevalence": 0.4764,
+        "roc_auc": 0.91,
+        "pr_auc": 0.9083,
+        "brier": 0.127,
+        "threshold": 0.6367,
+        "precision": 0.8761,
+        "sensitivity": 0.7193,
+        "specificity": 0.9074,
+        "f1": 0.79,
+        "accuracy": 0.8178,
+        "confusion": {
+          "tp": 3521,
+          "fp": 498,
+          "tn": 4882,
+          "fn": 1374
+        }
+      },
+      "test_onset_subset": {
+        "n": 7151,
+        "n_positive": 1861,
+        "prevalence": 0.2602,
+        "roc_auc": 0.8819,
+        "pr_auc": 0.7478,
+        "brier": 0.1252,
+        "threshold": 0.6367,
+        "precision": 0.7114,
+        "sensitivity": 0.6147,
+        "specificity": 0.9123,
+        "f1": 0.6596,
+        "accuracy": 0.8348,
+        "confusion": {
+          "tp": 1144,
+          "fp": 464,
+          "tn": 4826,
+          "fn": 717
+        }
+      },
+      "test_sensor_gap_subset": {
+        "n": 366,
+        "n_positive": 134,
+        "prevalence": 0.3661,
+        "roc_auc": 0.9372,
+        "pr_auc": 0.9177,
+        "brier": 0.1074,
+        "threshold": 0.6367,
+        "precision": 0.7931,
+        "sensitivity": 0.8582,
+        "specificity": 0.8707,
+        "f1": 0.8244,
+        "accuracy": 0.8661,
+        "confusion": {
+          "tp": 115,
+          "fp": 30,
+          "tn": 202,
+          "fn": 19
+        }
+      }
+    },
+    "sensor_only": {
+      "test": {
+        "n": 10275,
+        "n_positive": 4895,
+        "prevalence": 0.4764,
+        "roc_auc": 0.9727,
+        "pr_auc": 0.9733,
+        "brier": 0.0648,
+        "threshold": 0.8014,
+        "precision": 0.9672,
+        "sensitivity": 0.7902,
+        "specificity": 0.9757,
+        "f1": 0.8698,
+        "accuracy": 0.8873,
+        "confusion": {
+          "tp": 3868,
+          "fp": 131,
+          "tn": 5249,
+          "fn": 1027
+        }
+      },
+      "test_onset_subset": {
+        "n": 7151,
+        "n_positive": 1861,
+        "prevalence": 0.2602,
+        "roc_auc": 0.9386,
+        "pr_auc": 0.8576,
+        "brier": 0.0841,
+        "threshold": 0.8014,
+        "precision": 0.915,
+        "sensitivity": 0.4798,
+        "specificity": 0.9843,
+        "f1": 0.6295,
+        "accuracy": 0.853,
+        "confusion": {
+          "tp": 893,
+          "fp": 83,
+          "tn": 5207,
+          "fn": 968
+        }
+      },
+      "test_sensor_gap_subset": {
+        "n": 366,
+        "n_positive": 134,
+        "prevalence": 0.3661,
+        "roc_auc": 0.9319,
+        "pr_auc": 0.9053,
+        "brier": 0.1048,
+        "threshold": 0.8014,
+        "precision": 0.8727,
+        "sensitivity": 0.7164,
+        "specificity": 0.9397,
+        "f1": 0.7869,
+        "accuracy": 0.8579,
+        "confusion": {
+          "tp": 96,
+          "fp": 14,
+          "tn": 218,
+          "fn": 38
+        }
+      }
+    },
+    "fused_ehr_plus_sensor": {
+      "test": {
+        "n": 10275,
+        "n_positive": 4895,
+        "prevalence": 0.4764,
+        "roc_auc": 0.9746,
+        "pr_auc": 0.975,
+        "brier": 0.0631,
+        "threshold": 0.8575,
+        "precision": 0.9772,
+        "sensitivity": 0.7722,
+        "specificity": 0.9836,
+        "f1": 0.8627,
+        "accuracy": 0.8829,
+        "confusion": {
+          "tp": 3780,
+          "fp": 88,
+          "tn": 5292,
+          "fn": 1115
+        }
+      },
+      "test_onset_subset": {
+        "n": 7151,
+        "n_positive": 1861,
+        "prevalence": 0.2602,
+        "roc_auc": 0.9426,
+        "pr_auc": 0.867,
+        "brier": 0.0826,
+        "threshold": 0.8575,
+        "precision": 0.9331,
+        "sensitivity": 0.4498,
+        "specificity": 0.9887,
+        "f1": 0.607,
+        "accuracy": 0.8484,
+        "confusion": {
+          "tp": 837,
+          "fp": 60,
+          "tn": 5230,
+          "fn": 1024
+        }
+      },
+      "test_sensor_gap_subset": {
+        "n": 366,
+        "n_positive": 134,
+        "prevalence": 0.3661,
+        "roc_auc": 0.9373,
+        "pr_auc": 0.9201,
+        "brier": 0.0929,
+        "threshold": 0.8575,
+        "precision": 0.9109,
+        "sensitivity": 0.6866,
+        "specificity": 0.9612,
+        "f1": 0.783,
+        "accuracy": 0.8607,
+        "confusion": {
+          "tp": 92,
+          "fp": 9,
+          "tn": 223,
+          "fn": 42
+        }
+      }
+    }
+  },
+  "ablation_bootstrap_ci": {
+    "method": "patient-level cluster bootstrap, 300 resamples, 95% percentile intervals",
+    "models": {
+      "ehr_only": {
+        "pr_auc": [
+          0.8102,
+          0.9566
+        ],
+        "roc_auc": [
+          0.8493,
+          0.9492
+        ]
+      },
+      "sensor_only": {
+        "pr_auc": [
+          0.9381,
+          0.9863
+        ],
+        "roc_auc": [
+          0.9567,
+          0.9829
+        ]
+      },
+      "fused_ehr_plus_sensor": {
+        "pr_auc": [
+          0.939,
+          0.9876
+        ],
+        "roc_auc": [
+          0.9599,
+          0.9851
+        ]
+      }
+    },
+    "paired_differences": {
+      "ehr_only_minus_sensor_only": {
+        "pr_auc": [
+          -0.1363,
+          -0.0289
+        ],
+        "roc_auc": [
+          -0.1134,
+          -0.031
+        ]
+      },
+      "ehr_only_minus_fused_ehr_plus_sensor": {
+        "pr_auc": [
+          -0.1413,
+          -0.0304
+        ],
+        "roc_auc": [
+          -0.1162,
+          -0.0325
+        ]
+      },
+      "sensor_only_minus_ehr_only": {
+        "pr_auc": [
+          0.0289,
+          0.1363
+        ],
+        "roc_auc": [
+          0.031,
+          0.1134
+        ]
+      },
+      "sensor_only_minus_fused_ehr_plus_sensor": {
+        "pr_auc": [
+          -0.0072,
+          0.0012
+        ],
+        "roc_auc": [
+          -0.0068,
+          0.0014
+        ]
+      },
+      "fused_ehr_plus_sensor_minus_ehr_only": {
+        "pr_auc": [
+          0.0304,
+          0.1413
+        ],
+        "roc_auc": [
+          0.0325,
+          0.1162
+        ]
+      },
+      "fused_ehr_plus_sensor_minus_sensor_only": {
+        "pr_auc": [
+          -0.0012,
+          0.0072
+        ],
+        "roc_auc": [
+          -0.0014,
+          0.0068
+        ]
+      }
+    }
+  },
+  "permutation_importance_test": [
+    {
+      "feature": "cgm_current",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.2442,
+      "sd": 0.0052
+    },
+    {
+      "feature": "hour_sin",
+      "stream": "Context (time of day)",
+      "mean_drop_pr_auc": 0.0236,
+      "sd": 0.0012
+    },
+    {
+      "feature": "hour_cos",
+      "stream": "Context (time of day)",
+      "mean_drop_pr_auc": 0.0216,
+      "sd": 0.0008
+    },
+    {
+      "feature": "hba1c_pct",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0136,
+      "sd": 0.0007
+    },
+    {
+      "feature": "hours_since_wake",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0115,
+      "sd": 0.0006
+    },
+    {
+      "feature": "cgm_mean_60",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0076,
+      "sd": 0.0003
+    },
+    {
+      "feature": "fasting_glucose_mg_dl",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0063,
+      "sd": 0.0004
+    },
+    {
+      "feature": "cgm_min_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0035,
+      "sd": 0.0003
+    },
+    {
+      "feature": "minutes_since_meal_log",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0015,
+      "sd": 0.0003
+    },
+    {
+      "feature": "cgm_minutes_since_last",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0013,
+      "sd": 0.0
+    },
+    {
+      "feature": "cgm_slope_30",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0008,
+      "sd": 0.0001
+    },
+    {
+      "feature": "cgm_roc_15",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0007,
+      "sd": 0.0002
+    },
+    {
+      "feature": "cgm_max_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0007,
+      "sd": 0.0001
+    },
+    {
+      "feature": "steps_30",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0005,
+      "sd": 0.0001
+    },
+    {
+      "feature": "years_since_diagnosis",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0003,
+      "sd": 0.0001
+    },
+    {
+      "feature": "bmi_kg_m2",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0003,
+      "sd": 0.0001
+    },
+    {
+      "feature": "hrv_rel_24h",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0002,
+      "sd": 0.0001
+    },
+    {
+      "feature": "hr_mean_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0002,
+      "sd": 0.0
+    },
+    {
+      "feature": "cgm_mean_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0002,
+      "sd": 0.0001
+    },
+    {
+      "feature": "hrv_mean_60",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0001,
+      "sd": 0.0001
+    },
+    {
+      "feature": "hba1c_x_carbs_logged",
+      "stream": "Fusion (EHR x sensor)",
+      "mean_drop_pr_auc": 0.0001,
+      "sd": 0.0
+    },
+    {
+      "feature": "cgm_minus_fasting",
+      "stream": "Fusion (EHR x sensor)",
+      "mean_drop_pr_auc": 0.0001,
+      "sd": 0.0001
+    },
+    {
+      "feature": "cgm_coverage_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0001,
+      "sd": 0.0
+    },
+    {
+      "feature": "carbs_logged_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0001,
+      "sd": 0.0
+    },
+    {
+      "feature": "diabetes_status",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "sex",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "steps_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0001
+    },
+    {
+      "feature": "is_weekend",
+      "stream": "Context (time of day)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0002
+    },
+    {
+      "feature": "hypertension",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "hr_mean_30",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0001
+    },
+    {
+      "feature": "cgm_std_60",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0001
+    },
+    {
+      "feature": "sleep_last_h",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": 0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "sleep_quality_last",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": -0.0,
+      "sd": 0.0002
+    },
+    {
+      "feature": "egfr_ml_min_1_73m2",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0,
+      "sd": 0.0001
+    },
+    {
+      "feature": "active_min_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": -0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "ldl_mg_dl",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0,
+      "sd": 0.0001
+    },
+    {
+      "feature": "medication_class",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0,
+      "sd": 0.0
+    },
+    {
+      "feature": "wear_coverage_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": -0.0001,
+      "sd": 0.0
+    },
+    {
+      "feature": "systolic_bp_mm_hg",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0002,
+      "sd": 0.0001
+    },
+    {
+      "feature": "triglycerides_mg_dl",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0002,
+      "sd": 0.0001
+    },
+    {
+      "feature": "cgm_tir_120",
+      "stream": "Sensor (dynamic)",
+      "mean_drop_pr_auc": -0.0002,
+      "sd": 0.0
+    },
+    {
+      "feature": "age_years",
+      "stream": "EHR (historical)",
+      "mean_drop_pr_auc": -0.0003,
+      "sd": 0.0
+    }
+  ],
+  "grouped_permutation_importance_test": {
+    "EHR (historical) block": {
+      "mean_drop_pr_auc": 0.042,
+      "sd": 0.0012
+    },
+    "Sensor (dynamic) block": {
+      "mean_drop_pr_auc": 0.3748,
+      "sd": 0.0059
+    },
+    "Time-of-day context": {
+      "mean_drop_pr_auc": 0.0485,
+      "sd": 0.001
+    },
+    "Fusion features": {
+      "mean_drop_pr_auc": 0.0003,
+      "sd": 0.0001
+    }
+  }
+}

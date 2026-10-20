@@ -1,0 +1,13 @@
+[project]
+name = "swasthtwin"
+version = "0.1.0"
+description = "Research prototype: patient digital twin for 2-hour hyperglycemia risk (synthetic data)"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

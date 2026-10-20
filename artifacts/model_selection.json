@@ -1,0 +1,87 @@
+{
+  "split": "validation patients (never used for fitting)",
+  "selection_metric": "pr_auc",
+  "selected": "hist_gradient_boosting",
+  "candidates": {
+    "logistic_regression": {
+      "n": 10251,
+      "n_positive": 4945,
+      "prevalence": 0.4824,
+      "roc_auc": 0.9394,
+      "pr_auc": 0.9426,
+      "brier": 0.0981,
+      "threshold": 0.5736,
+      "precision": 0.8926,
+      "sensitivity": 0.8,
+      "specificity": 0.9103,
+      "f1": 0.8438,
+      "accuracy": 0.8571,
+      "confusion": {
+        "tp": 3956,
+        "fp": 476,
+        "tn": 4830,
+        "fn": 989
+      }
+    },
+    "random_forest": {
+      "n": 10251,
+      "n_positive": 4945,
+      "prevalence": 0.4824,
+      "roc_auc": 0.9712,
+      "pr_auc": 0.9729,
+      "brier": 0.0704,
+      "threshold": 0.6527,
+      "precision": 0.9684,
+      "sensitivity": 0.8,
+      "specificity": 0.9757,
+      "f1": 0.8762,
+      "accuracy": 0.8909,
+      "confusion": {
+        "tp": 3956,
+        "fp": 129,
+        "tn": 5177,
+        "fn": 989
+      }
+    },
+    "hist_gradient_boosting": {
+      "n": 10251,
+      "n_positive": 4945,
+      "prevalence": 0.4824,
+      "roc_auc": 0.9756,
+      "pr_auc": 0.9766,
+      "brier": 0.062,
+      "threshold": 0.8575,
+      "precision": 0.9763,
+      "sensitivity": 0.8,
+      "specificity": 0.9819,
+      "f1": 0.8794,
+      "accuracy": 0.8942,
+      "confusion": {
+        "tp": 3956,
+        "fp": 96,
+        "tn": 5210,
+        "fn": 989
+      }
+    }
+  },
+  "rule_baseline": {
+    "n": 10251,
+    "n_positive": 4945,
+    "prevalence": 0.4824,
+    "roc_auc": 0.8733,
+    "pr_auc": 0.8723,
+    "brier": 0.1518,
+    "threshold": 0.5,
+    "precision": 0.8601,
+    "sensitivity": 0.7173,
+    "specificity": 0.8913,
+    "f1": 0.7822,
+    "accuracy": 0.8073,
+    "confusion": {
+      "tp": 3547,
+      "fp": 577,
+      "tn": 4729,
+      "fn": 1398
+    }
+  }
+}

@@ -1,0 +1,42 @@
+# SwasthTwin modelling configuration.
+# All pipeline scripts read this file. Change values here, then re-run
+# `make all` so data, model, metrics, figures and slides stay consistent.
+
+seed: 2026
+
+data:
+  n_patients: 80            # synthetic cohort size
+  n_days: 14                # days of sensor data per patient
+  cgm_interval_min: 5       # fixed at 5 in this version (informational)
+  start_date: "2026-03-02"  # first synthetic day (a Monday); fictional
+  cgm_dropout_rate: 0.002   # chance per reading of starting a sensor gap
+  meal_log_probability: 0.7 # mean share of real meals a patient logs (varies by patient)
+
+target:
+  name: "hyperglycemia_event_within_120m"
+  threshold_mg_dl: 180      # prototype rule: any CGM reading >= this ...
+  horizon_min: 120          # ... within the next 120 minutes
+  min_future_coverage: 0.5  # need >=50% of future CGM readings present to label
+
+features:
+  sample_every_min: 30      # one prediction point every 30 minutes
+  min_history_min: 120      # need 2 h of past data before first prediction
+  max_staleness_min: 30     # last CGM older than this -> "stale" warning
+
+split:
+  train_frac: 0.6           # by patient
+  val_frac: 0.2
+  test_frac: 0.2
+  temporal_train_days: 10   # temporal check: train days 0-9 / test days 10-13
+
+model:
+  candidates: ["logistic_regression", "random_forest", "hist_gradient_boosting"]
+  selection_metric: "pr_auc"     # chosen on the validation patients
+  operating_point:
+    rule: "target_sensitivity"   # threshold picked on validation patients
+    target_sensitivity: 0.80
+  bootstrap_reps: 300            # patient-level bootstrap for 95% CIs
+
+risk_bands:            # PROTOTYPE display bands. Not clinically validated.
+  low_max: 0.30
+  moderate_max: 0.60   # above this = "elevated"

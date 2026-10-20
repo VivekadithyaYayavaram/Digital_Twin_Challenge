@@ -1,0 +1,32 @@
+# SwasthTwin — team and institution details
+# ---------------------------------------------------------------
+# EDIT THIS FILE before submission. Every value marked "TODO" is a
+# placeholder. Nothing here was verified by the build process.
+# Do NOT put private phone numbers here if the repo will be public
+# unless the team agrees to publish them.
+# This file is read by the README generator, the dashboard header
+# and the presentation builder (scripts/build_*.py).
+
+project_name: "SwasthTwin"
+presentation_file: "Innovators_IIT_Kharagpur"   # required naming: TeamName_Institution
+project_title: "SwasthTwin — A Personalized Digital Twin for Two-Hour Glucose Risk Forecasting"
+competition: "Happiest Health Digital Twin Challenge 2026"
+
+team_name: "Innovators"
+institution: "Indian Institute of Technology Kharagpur"
+incubator: "TODO: incubator name, or 'Not applicable'"
+
+team_leader:
+  name: "Yayavaram Vivekadithya"
+  email: "TODO: team leader email"
+  role: "Team Leader"
+
+team_members:
+  - name: "TODO: member 2 full name"
+    role: "TODO: role"
+  - name: "TODO: member 3 full name"
+    role: "TODO: role"
+
+links:
+  github_repo: "TODO: public GitHub URL"
+  demo_video: "PENDING: unlisted YouTube URL — add after the recording is uploaded"

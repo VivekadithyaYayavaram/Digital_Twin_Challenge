@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets — never commit
+.env
+*.key
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Scratch
+tmp/
+*.log
+~$*.pptx
+
+# NOTE: data/, artifacts/ and reports/ ARE committed on purpose, so judges
+# can run the dashboard immediately. They are fully synthetic and small.
